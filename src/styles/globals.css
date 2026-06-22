@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 15 17 20; /* #0F1114 */
+    --background: 48 49 49; /* #303131 */
     --surface: 24 28 32; /* #181C20 */
     --element: 31 35 40; /* #1F2328 */
     --primary: 239 241 243; /* #EFF1F3 */
@@ -26,11 +26,11 @@
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: #0F1114;
+    background: #303131;
   }
 
   body {
-    background: #0F1114;
+    background: #303131;
     color: #EFF1F3;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     min-height: 100vh;
@@ -43,7 +43,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #0F1114;
+    background: #303131;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -251,5 +251,33 @@
     color: #1F7A3B;
     font-weight: 500;
     font-size: 0.875rem;
+  }
+
+  /* COLOR REPLACEMENTS */
+  /* REPLACED: #f095d0 → #c8dff9 */
+  /* REPLACED: #fff81b → #19ce33 */
+
+  .text-pink-replaced {
+    color: #c8dff9;
+  }
+
+  .text-yellow-replaced {
+    color: #19ce33;
+  }
+
+  .bg-pink-replaced {
+    background: #c8dff9;
+  }
+
+  .bg-yellow-replaced {
+    background: #19ce33;
+  }
+
+  .border-pink-replaced {
+    border-color: #c8dff9;
+  }
+
+  .border-yellow-replaced {
+    border-color: #19ce33;
   }
 }

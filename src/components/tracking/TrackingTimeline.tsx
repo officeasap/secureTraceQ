@@ -23,26 +23,11 @@ export const TrackingTimeline = ({
     }
   };
 
-  const getStatusTextColor = (status: string) => {
-    switch (status) {
-      case 'SORTING':
-        return 'tracking-value-sorting';
-      case 'IN TRANSIT':
-        return 'tracking-value-transit';
-      case 'ARRIVED':
-      case 'DELIVERED':
-        return 'tracking-value-destination';
-      default:
-        return 'tracking-value';
-    }
-  };
-
   return (
     <div className="securesoft-card depth-5">
       <h2 className="tracking-label mb-4">Tracking Timeline</h2>
 
       <div className="space-y-4">
-        {/* DEPARTURE */}
         <div className="relative pl-4">
           <div className="absolute left-0 top-4 bottom-0 w-px bg-[#2A2F35]" />
           <div className="flex items-start gap-3">
@@ -54,7 +39,6 @@ export const TrackingTimeline = ({
           </div>
         </div>
 
-        {/* SORTING */}
         <div className="relative pl-4">
           <div className="flex items-start gap-3">
             <div className="w-2 h-2 rounded-full bg-[#D97A0C] mt-1.5 flex-shrink-0" />

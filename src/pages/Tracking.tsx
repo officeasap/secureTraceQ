@@ -20,20 +20,11 @@ export default function Tracking() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-[#303131] flex flex-col">
       <Header />
 
       <main className="flex-1 px-4 sm:px-6 py-6 sm:py-8">
         <div className="max-w-[1200px] mx-auto">
-          <div className="mb-6">
-            <h1 className="text-sm text-secondary uppercase tracking-widest">
-              Tracking Code
-            </h1>
-            <p className="text-xl font-semibold text-primary tracking-wide">
-              {mockTrackingData.trackingCode}
-            </p>
-          </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">
               <CardViewer

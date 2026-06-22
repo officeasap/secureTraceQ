@@ -19,7 +19,7 @@ export const CardViewer = ({
     <div className="securesoft-card depth-5">
       <div className="flex flex-wrap justify-between items-start gap-3 mb-4">
         <div>
-          <p className="text-secondary text-[10px] uppercase tracking-widest">
+          <p className="text-[#c8dff9] text-[10px] uppercase tracking-widest">
             {category}
           </p>
           <p className="text-primary font-semibold text-lg tracking-wide">
@@ -30,7 +30,9 @@ export const CardViewer = ({
           <button
             onClick={() => setIsFront(true)}
             className={`px-4 py-1.5 text-xs font-medium uppercase tracking-wider rounded-lg transition-all duration-200 ${
-              isFront ? 'bg-element text-primary depth-3' : 'text-secondary hover:text-primary'
+              isFront
+                ? 'bg-[#c8dff9] text-[#0F1114] depth-3'
+                : 'text-[#c8dff9] hover:text-[#19ce33]'
             }`}
           >
             Front
@@ -38,7 +40,9 @@ export const CardViewer = ({
           <button
             onClick={() => setIsFront(false)}
             className={`px-4 py-1.5 text-xs font-medium uppercase tracking-wider rounded-lg transition-all duration-200 ${
-              !isFront ? 'bg-element text-primary depth-3' : 'text-secondary hover:text-primary'
+              !isFront
+                ? 'bg-[#19ce33] text-[#0F1114] depth-3'
+                : 'text-[#19ce33] hover:text-[#c8dff9]'
             }`}
           >
             Back
@@ -55,7 +59,7 @@ export const CardViewer = ({
         />
       </div>
 
-      <div className="mt-3 flex justify-center text-secondary text-[10px] uppercase tracking-widest">
+      <div className="mt-3 flex justify-center text-[#c8dff9] text-[10px] uppercase tracking-widest">
         {isFront ? 'Front View' : 'Back View'}
       </div>
     </div>
