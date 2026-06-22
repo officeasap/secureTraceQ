@@ -5,7 +5,7 @@ import { CardViewer } from '../components/card/CardViewer';
 import { TrackingTimeline } from '../components/tracking/TrackingTimeline';
 import { EmailModule } from '../components/email/EmailModule';
 
-export const Tracking = () => {
+export default function Tracking() {
   const { code } = useParams<{ code: string }>();
 
   const mockTrackingData = {
@@ -60,4 +60,4 @@ export const Tracking = () => {
       <Footer />
     </div>
   );
-};
+}
