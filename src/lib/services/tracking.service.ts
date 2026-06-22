@@ -50,6 +50,7 @@ export const trackingService = {
         event: '*',
         schema: 'public',
         table: 'tracking_updates',
+        filter: `tracking_code=eq.${trackingCode}`,
       }, payload => {
         if (payload.new) {
           callback(payload.new);

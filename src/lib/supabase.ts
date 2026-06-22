@@ -79,6 +79,25 @@ export type Database = {
           triggered_by: string;
         };
       };
+      auth_audit: {
+        Row: {
+          id: string;
+          driver_code_hash: string;
+          success: boolean;
+          ip_address: string;
+          attempt_count: number;
+          locked_until?: string;
+          created_at: string;
+        };
+        Insert: {
+          driver_code_hash: string;
+          success: boolean;
+          ip_address: string;
+          attempt_count: number;
+          locked_until?: string;
+          created_at: string;
+        };
+      };
     };
   };
 };
