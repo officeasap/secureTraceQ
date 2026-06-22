@@ -4,12 +4,7 @@ import Tracking from './pages/Tracking';
 
 function App() {
   return (
-    <BrowserRouter
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/tracking/:code" element={<Tracking />} />
@@ -19,4 +14,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;;
