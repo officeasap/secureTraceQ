@@ -1,53 +1,20 @@
 import { Link } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
 
-const Header = () => {
-  const { isAuthenticated, logout } = useAuth();
-
+export const Header = () => {
   return (
-    <header className="bg-white shadow-sm border-b">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center">
-              <div className="text-2xl font-bold text-blue-600">SecureTrace</div>
-            </Link>
-          </div>
-          
-          <nav className="hidden md:flex space-x-8">
-            <Link to="/" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
-              Home
-            </Link>
-            {isAuthenticated && (
-              <>
-                <Link to="/admin" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
-                  Admin Dashboard
-                </Link>
-                <Link to="/audit-logs" className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
-                  Audit Logs
-                </Link>
-              </>
-            )}
-          </nav>
-
-          <div className="flex items-center space-x-4">
-            {isAuthenticated ? (
-              <button
-                onClick={logout}
-                className="bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700"
-              >
-                Logout
-              </button>
-            ) : (
-              <div className="text-sm text-gray-500">
-                Not authenticated
-              </div>
-            )}
-          </div>
+    <header className="py-4 px-4 sm:px-6 border-b border-[#2A2F35] bg-background">
+      <div className="max-w-[1200px] mx-auto flex items-center justify-between">
+        <Link to="/" className="flex flex-col">
+          <span className="securesoft-logo">SecureTrace</span>
+          <span className="securesoft-logo-sub">Corporate Verification Portal</span>
+        </Link>
+        <div className="flex items-center gap-4">
+          <span className="text-secondary text-xs hidden sm:block">
+            ISO 27001 · SOC2
+          </span>
+          <div className="w-2 h-2 rounded-full bg-[#1F7A3B] animate-pulse-subtle" />
         </div>
       </div>
     </header>
   );
 };
-
-export default Header;
