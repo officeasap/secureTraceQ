@@ -1,87 +1,42 @@
 import { supabase } from '../supabase';
 
-export interface AuditEntry {
-  eventType: string;
-  componentId: string;
-  complianceTag: string;
-  shadowCss?: string;
-  userAgent?: string;
-  sessionId?: string;
-}
-
 export const auditService = {
-  /**
-   * Log an audit event
-   */
-  async logEvent(entry: AuditEntry): Promise<void> {
-    try {
-      const { error } = await supabase
-        .from('ui_depth_audit')
-        .insert({
-          event_type: entry.eventType,
-          component_id: entry.componentId,
-          compliance_tag: entry.complianceTag || 'NAME-LAW-SECURETRACE',
-          shadow_css: entry.shadowCss,
-          user_agent: entry.userAgent || navigator.userAgent,
-          session_id: entry.sessionId,
-        });
+  async logVerificationAttempt(params: {
+    trackingCode: string;
+    ipAddress: string;
+    userAgent: string;
+    complianceTag: string;
+  }): Promise<void> {
+    // Simple SHA‑256 hash of the tracking code for driver_code_hash
+    const driverCodeHash = await this.hashString(params.trackingCode);
 
-      if (error) {
-        console.error('Audit log failed:', error);
-      }
-    } catch (err) {
-      console.error('Audit service error:', err);
+    const { data, error } = await supabase
+      .from('delivery_audit')
+      .insert({
+        driver_code_hash: driverCodeHash,
+        stage: 'sorting',
+        status: 'pending',
+        timestamp: new Date().toISOString(),
+        owner_email: null,
+        ip_address: params.ipAddress,
+        user_agent: params.userAgent,
+        compliance_tags: [params.complianceTag],
+        previous_hash: '',
+        created_at: new Date().toISOString(),
+      });
+
+    if (error) {
+      console.error('Audit log failed:', error);
     }
   },
 
-  /**
-   * Log authentication attempts
-   */
-  async logAuthAttempt(
-    driverCodeHash: string,
-    success: boolean,
-    ipAddress?: string
-  ): Promise<void> {
-    try {
-      const { error } = await supabase
-        .from('auth_audit')
-        .insert({
-          driver_code_hash: driverCodeHash,
-          success,
-          ip_address: ipAddress,
-        });
-
-      if (error) {
-        console.error('Auth audit failed:', error);
-      }
-    } catch (err) {
-      console.error('Auth audit service error:', err);
-    }
-  },
-
-  /**
-   * Log tracking updates
-   */
-  async logTrackingUpdate(
-    trackingCode: string,
-    previousStatus: string,
-    newStatus: string
-  ): Promise<void> {
-    try {
-      const { error } = await supabase
-        .from('tracking_updates')
-        .insert({
-          tracking_code: trackingCode,
-          previous_status: previousStatus,
-          new_status: newStatus,
-          timestamp: new Date().toISOString(),
-        });
-
-      if (error) {
-        console.error('Tracking audit failed:', error);
-      }
-    } catch (err) {
-      console.error('Tracking audit service error:', err);
-    }
+  private async hashString(str: string): Promise<string> {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('');
   },
 };
