@@ -76,9 +76,13 @@ export const EmailModule = ({ trackingCode }: EmailModuleProps) => {
   status updates for this tracking code. You may unsubscribe at any time.
 </p>
 
-          <p className="text-[#c8dff9] text-[12px] leading-relaxed">
-            No spam, ever.
-          </p>
+                 <p className="text-[#c8dff9] text-[12px] leading-relaxed">
+  ✉️ No spam, ever.
+</p>
+<br/>
+<p className="text-[#00ffcc] text-[12px] leading-relaxed font-semibold">
+  ✉️ support@tracesecureone.com
+</p>
         </div>
       </form>
     </div>
